@@ -14,11 +14,11 @@
         }
 
         body {
-            background: #f0f0f0;
+            background: #333;
         }
 
-        body.dark-mode {
-            background: #333;
+        body.light-mode {
+            background: #f0f0f0;
         }
 
         .installfm {
@@ -37,12 +37,12 @@
             font-size: 18px;
             font-family: "Arial", sans-serif;
             font-weight: bolder;
-            color: #757575;
+            color: #ccc;
         }
 
-        .installfm.dark-mode {
-            background: #333;
-            color: #ccc;
+        .installfm.light-mode {
+            background: #eee;
+            color: #757575;
         }
 
         .installfm p {
@@ -62,6 +62,7 @@
             font-family: "Arial", sans-serif;
             color: #333;
             box-shadow: inset 0 2px 3px #e8e8e8;
+            background: none;
         }
 
         .installfm input:focus {
@@ -71,19 +72,19 @@
         }
 
         .commit {
-            background: #f2f2f2;
-        }
-
-        .commit.dark-mode {
             background: #444;
         }
 
+        .commit.light-mode {
+            background: #f2f2f2;
+        }
+
         .commit:hover {
-            background: #e9e9e9;
+            background: #555;
         }
 
         .commit:active {
-            background: #f2f2f2;
+            background: #444;
         }
 
         #darkModeBtn {
@@ -95,12 +96,12 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            color: #333;
+            color: #ccc;
             transition: color 0.3s;
         }
 
-        #darkModeBtn.dark-mode {
-            color: #ccc;
+        #darkModeBtn.light-mode {
+            color: #333;
         }
 
         #darkModeIcon {
@@ -110,7 +111,7 @@
     </style>
 </head>
 
-<body>
+<body class="light-mode">
     <div class="installfm" id="installFm">
         <div id="loading" style="padding: 10px; color:#333; display:none; position:relative; text-align: center;">
         </div>
@@ -136,17 +137,18 @@
         <p><input id="fileurl" type="text" name="pkgfile" placeholder="Enter package URL" onfocus="this.value=''" autocomplete="off" /></p>
         <p><input class="commit" type="button" value="Execute" onclick="checkInput();" /></p>
     </div>
-    <button id="darkModeBtn" onclick="toggleDarkMode()">
+    <button id="darkModeBtn" class="light-mode" onclick="toggleDarkMode()">
         <i id="darkModeIcon" class="fas fa-moon"></i>
     </button>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="text/javascript">
         function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            document.getElementById('installFm').classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
+            document.getElementById('installFm').classList.toggle('light-mode');
             document.querySelectorAll('.commit').forEach(button => {
-                button.classList.toggle('dark-mode');
+                button.classList.toggle('light-mode');
             });
+            document.getElementById('darkModeBtn').classList.toggle('light-mode');
         }
 
         function setInstallFmTop() {
